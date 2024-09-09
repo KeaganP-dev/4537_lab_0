@@ -1,0 +1,18 @@
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Normal layout initially */
+    position: relative;
+}
+button {
+    height: 5em;
+    width: 10em;
+    margin: 5px;
+    border: none;
+    color: white;
+    font-size: 1em;
+    transition: all 0.5s ease; /* Smooth transition when buttons move */
+}
+.hidden {
+    color: transparent; /* Make text invisible */
+}
