@@ -121,8 +121,8 @@ class ButtonCreator {
                 const buttonHeight = button.offsetHeight;
 
                 // Adjust maxX and maxY to account for button dimensions
-                const maxX = innerWidth - (buttonWidth * 2);
-                const maxY = innerHeight - (buttonHeight * 2);
+                const maxX = innerWidth - (buttonWidth);
+                const maxY = innerHeight - (buttonHeight * 3.5);
                 const randomX = Math.random() * maxX;
                 const randomY = Math.random() * maxY;
 
