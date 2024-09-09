@@ -1,3 +1,5 @@
+// ChatGPT was used in the creation and testing of this code.
+
 class TextManager {
     constructor() {
         this.injectText();
@@ -20,11 +22,11 @@ class TextManager {
 }
 
 class ButtonCreator {
-    constructor(textManager) {
-        this.textManager = textManager; // Reference to the TextManager instance
+    constructor() {
         this.submitBtn = document.getElementById('submitBtn');
         this.buttonNumberInput = document.getElementById('buttonNumber');
         this.buttonContainer = document.getElementById('buttonContainer');
+        this.gameMessage = document.getElementById('gameMessage');
         this.originalOrder = [];
         this.userOrder = [];
         this.currentIndex = 0;
@@ -40,7 +42,7 @@ class ButtonCreator {
             this.originalOrder = [];
             this.userOrder = [];
             this.currentIndex = 0;
-            this.textManager.setGameMessage(""); // Clear game message
+            this.gameMessage.textContent = '';
             this.gameActive = true;
 
             // Create buttons with text
@@ -115,8 +117,12 @@ class ButtonCreator {
             // Scramble the positions of the buttons
             this.buttonContainer.childNodes.forEach(button => {
                 const { innerWidth, innerHeight } = window;
-                const maxX = innerWidth - button.offsetWidth;
-                const maxY = innerHeight - button.offsetHeight;
+                const buttonWidth = button.offsetWidth;
+                const buttonHeight = button.offsetHeight;
+
+                // Adjust maxX and maxY to account for button dimensions
+                const maxX = innerWidth - (buttonWidth * 2);
+                const maxY = innerHeight - (buttonHeight * 2);
                 const randomX = Math.random() * maxX;
                 const randomY = Math.random() * maxY;
 
@@ -146,12 +152,12 @@ class ButtonCreator {
 
             // Check if all buttons are clicked correctly
             if (this.currentIndex === this.originalOrder.length) {
-                this.textManager.setGameMessage('excellentMemory');
+                this.gameMessage.textContent = 'Excellent memory!';
                 this.gameActive = false;
             }
         } else {
             // Wrong order clicked
-            this.textManager.setGameMessage('wrongOrder');
+            this.gameMessage.textContent = 'Wrong order!';
             this.revealAllButtons();
             this.gameActive = false;
         }
